@@ -1,0 +1,118 @@
+
+# para gerar a imagem comando docker build na raiz do projeto
+
+# docker build -t mysql-image -f api/db/Dockerfile .
+
+# -t da nome a tag
+# -f espefica o arquivo dockerfile
+
+######### parar todos container     docker rm -f $(docker ps -a -q)
+
+
+
+# docker run -d --rm --name mysql-container mysql-image
+
+
+
+# docker exec -i mysql-container mysql -uroot -pjohnny < api/db/script.sql
+# exec -> executa um comando dentro de um container
+# -i -> modo interativo, permite que o processo nao seja finalizado ate o final
+
+
+# >>> acessar o terninal do container
+# docker exec -it mysql-container bash
+# -it TTY -> "terminal"
+# apenas a palavra bash por causa do git-bash
+
+
+
+
+# mysql -uroot -pjohnny
+# use johnny_teste
+
+ALTER USER root IDENTIFIED WITH mysql_native_password BY johnny;
+
+# select * from produtos;
+
+
+### Volumes
+# para o container
+
+# docker run -d -v $(pwd)/api/db/data:/var/lib/mysql --rm --name mysql-container mysql-image
+# -v -> volume
+
+###############    Solução
+
+# ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock
+# comando abaixo dentro do container
+#apt-get install --reinstall mysql
+
+
+
+
+
+
+
+#############################################################################################
+container node
+npm init
+
+$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (api) docker-api
+version: (1.0.0)
+description: container-docker-api
+entry point: (index.js)
+test command: test
+git repository:
+keywords: Docker
+author: Johnny Contiero
+license: (ISC)
+About to write to C:\johnny\treinamentos\docker\api\package.json:
+
+{
+  "name": "docker-api",
+  "version": "1.0.0",
+  "description": "container-docker-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Docker"
+  ],
+  "author": "Johnny Contiero",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) yes
+
+
+
+
+
+npm install --save-dev nodemon
+
+npm config set @types:registry https://registry.npmjs.org/
+
+npm install --save express mysql
+
+
+
+docker build -t node-image-alpine .  
+
+docker run --name node-container -p 9876:9876 -d node-image-alpine
+
+
+
+mysql -u root -p  
